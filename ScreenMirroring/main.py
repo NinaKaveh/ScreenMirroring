@@ -12,7 +12,7 @@ server_sock.listen(1)
 
 port = server_sock.getsockname()[1]
 
-uuid = "52be30ba-5471-420c-b666-c42069fd4578"
+uuid = "52be30ba-5471-420c-b666-c42069fd4578"   # mettre le même sur la partie android
 
 
 advertise_service(server_sock, "SampleServer",
