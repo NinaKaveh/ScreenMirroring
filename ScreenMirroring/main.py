@@ -4,7 +4,6 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import threading
-import cv2
 import os
 import io
 # import PIL.Image as Image
