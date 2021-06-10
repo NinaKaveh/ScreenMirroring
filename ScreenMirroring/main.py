@@ -4,13 +4,9 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import threading
-import os
 import io
-# import PIL.Image as Image
 from PIL import Image, ImageTk, ImageFile
-import numpy as np
 import tkinter as tk
-from array import array
 from tkinter import messagebox
 from bluetooth import *
 
@@ -45,9 +41,6 @@ def creation_canvas():
     global window
     window = tk.Toplevel()
     window.title("Android Screen")
-    # global canvas
-    # canvas = tk.Canvas(window, width=1920, height=1080)
-    # canvas.pack()
 
     im = Image.open("screen_mirror_icon.png")
     couv = ImageTk.PhotoImage(im)
@@ -55,7 +48,6 @@ def creation_canvas():
     panel = tk.Label(window, image=couv)
     panel.pack(side="bottom", fill="both", expand="yes")
     window.protocol("WM_DELETE_WINDOW", closing_image)
-    #window.loop()
 
 def closing_image():
     if messagebox.askokcancel("Deconnexion", "Voulez-vous vous déconnecter ?"):
@@ -74,7 +66,6 @@ def lancement_socket():
 
 
 y = threading.Thread(target=fenetre_principale)
-#y.daemon = True
 y.start()
 
 
@@ -113,11 +104,8 @@ def reception():
     try:
         while True:
 
-            # data = client_sock.recv(102400000)
             data = client_sock.recv(1999999999)
             if len(data) == 0: break
-            # print("Paquet reçu : [%s]" % data)
-            # y = threading.Thread(target=afficher_image, args=(data,))
             if 'START' in str(data):
                 img_tmp = []
                 nb_images += 1
@@ -138,9 +126,7 @@ def reception():
 
                 img_tmp = []
                 image = Image.open(io.BytesIO(img_byte))
-                image = image.resize((1920, 1920))
-                image = image.rotate(90)
-                image = image.resize((1920, 1000))
+                image = image.resize((412, 732))
 
                 photo = ImageTk.PhotoImage(image)
                 # canvas.create_image(0, 0, anchor=tk.NW, image=photo)
